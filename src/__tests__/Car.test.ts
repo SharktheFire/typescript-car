@@ -58,16 +58,18 @@ describe('Car', () => {
     car.drive(100, 100)
     expect(car.status()).toEqual('parking')
   })
+
+  it('should increase and decrease speed', () => {
+    expect(car.speed()).toEqual(0)
+    car.start()
+    car.drive(50, 150)
+    expect(car.speed()).toEqual(50)
+    car.drive(-25, 150)
+    expect(car.speed()).toEqual(25)
+  })
 })
 
-//     /**
-//      * @test
-//      */
-//     public function itShouldNotDriveBeforeCarWasStarted()
-//     {
-//         $this->car->drive(10.0, 42.0);
-//         $this->assertEquals('parking', $this->car->status());
-//     }
+
 //     /**
 //      * @test
 //      */

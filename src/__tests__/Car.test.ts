@@ -125,33 +125,19 @@ describe('Car', () => {
     car.stop()
     expect(car.status()).toEqual('broken')
   })
-})
 
-//     /**
-//      * @test
-//      */
-//     public function itShouldNotSetSpeedIfCarIsNotStarted()
-//     {
-//         $this->assertEquals(0.0, $this->car->speed());
-//         $this->car->drive(50.0, 100.0);
-//         $this->assertEquals(0.0, $this->car->speed());
-//     }
-//     /**
-//      * @test
-//      */
-//     public function itShouldNotSetSpeedIfCarIsBroken()
-//     {
-//         $maxMileage = 1000.0;
-//         $car = new Car('BMW', 250, $maxMileage);
-//         $car->start();
-//         $car->drive(50.0, 1000.1);
-//         $this->assertEquals(0.0, $car->speed());
-//         $car->drive(50.0, 500.0);
-//         $this->assertEquals(0.0, $car->speed());
-//     }
-//     /**
-//      * @test
-//      */
+  it('should not set speed if car is broken', () => {
+    car.start()
+    car.drive(50, 1001)
+    expect(car.speed()).toEqual(0)
+    car.drive(100, 50)
+    expect(car.speed()).toEqual(0)
+  })
+
+  it('should have brand', () => {
+    expect(car.brand()).toEqual('VW')
+  })
+})
 //     public function itShouldHaveBrand()
 //     {
 //         $car = new Car('BMW', 220.0, 5000.0);

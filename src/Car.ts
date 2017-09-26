@@ -4,12 +4,16 @@ export default class Car {
     private speedNumber: number = 0
     private mileageNumber: number = 0
 
-    constructor(private brand: string, private maxSpeed: number, private maxMileage: number) {
+    constructor(private brandName: string, private maxSpeed: number, private maxMileage: number) {
         this.statusName = 'parking'
     }
 
     public status(): string {
         return this.statusName
+    }
+
+    public brand(): string {
+        return this.brandName
     }
 
     public start() {
@@ -24,11 +28,11 @@ export default class Car {
         }
     }
 
-    public speed() {
+    public speed(): number {
         return this.speedNumber
     }
 
-    public mileage() {
+    public mileage(): number {
         return this.mileageNumber
     }
 

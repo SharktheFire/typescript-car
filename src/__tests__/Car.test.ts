@@ -53,18 +53,13 @@ describe('Car', () => {
     car.drive(0, 100)
     expect(car.status()).toEqual('running')
   })
+
+  it('should not drive before car was started', () => {
+    car.drive(100, 100)
+    expect(car.status()).toEqual('parking')
+  })
 })
 
-//     /**
-//      * @test
-//      */
-//     public function itShouldLeaveStatusToRunning()
-//     {
-//         $this->car->start();
-//         $this->assertEquals('running', $this->car->status());
-//         $this->car->drive(0.0, 42.0);
-//         $this->assertEquals('running', $this->car->status());
-//     }
 //     /**
 //      * @test
 //      */

@@ -67,21 +67,14 @@ describe('Car', () => {
     car.drive(-25, 150)
     expect(car.speed()).toEqual(25)
   })
+
+  it('should return the mileage', () => {
+    expect(car.mileage()).toEqual(0)
+    car.start()
+    car.drive(50, 150)
+    expect(car.mileage()).toEqual(150)
+  })
 })
-
-
-//     /**
-//      * @test
-//      */
-//     public function itShouldIncreaseAndDecreaseSpeed()
-//     {
-//         $this->assertEquals(0.0, $this->car->speed());
-//         $this->car->start();
-//         $this->car->drive(50.0, 55.0);
-//         $this->assertEquals(50.0, $this->car->speed());
-//         $this->car->drive(-25.0, 55.0);
-//         $this->assertEquals(25.0, $this->car->speed());
-//     }
 //     /**
 //      * @test
 //      */

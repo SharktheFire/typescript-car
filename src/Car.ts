@@ -27,6 +27,10 @@ export default class Car {
             this.speedNumber = speed
         }
 
+        if (speed > this.maxSpeed) {
+            this.speedNumber = this.maxSpeed
+        }
+
         this.statusName = 'driving'
     }
 

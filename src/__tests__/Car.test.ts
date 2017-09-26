@@ -41,6 +41,12 @@ describe('Car', () => {
     car.drive(-30, 50)
     expect(car.speed()).toEqual(0)
   })
+
+  it('should not drive faster than max speed', () => {
+    car.start()
+    car.drive(300, 100)
+    expect(car.speed()).toEqual(car.maxSpeed)
+  })
 })
 
 //     /**

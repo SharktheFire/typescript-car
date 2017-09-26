@@ -1,6 +1,13 @@
 export default class Car {
-    constructor(brand: string, maxSpeed: number, maxMileage: number) {
 
+    private statusName: string
+
+    constructor(private brand: string, private maxSpeed: number, private maxMileage: number) {
+        this.statusName = 'parking'
+    }
+
+    public status(): string {
+        return this.statusName
     }
 }
 

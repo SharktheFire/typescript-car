@@ -21,17 +21,21 @@ export default class Car {
 
     public drive(speed: number, distance: number) {
 
+        if (speed === 0) {
+            this.statusName = 'running'
+            this.speedNumber = speed
+        } else {
+            this.statusName = 'driving'
+            this.speedNumber = speed
+        }
+
         if (speed <= 0) {
             this.speedNumber = 0
-        } else {
-            this.speedNumber = speed
         }
 
         if (speed > this.maxSpeed) {
             this.speedNumber = this.maxSpeed
         }
-
-        this.statusName = 'driving'
     }
 
     public speed() {

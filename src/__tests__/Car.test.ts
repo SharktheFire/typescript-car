@@ -47,20 +47,14 @@ describe('Car', () => {
     car.drive(300, 100)
     expect(car.speed()).toEqual(car.maxSpeed)
   })
+
+  it('should leave status to running', () => {
+    car.start()
+    car.drive(0, 100)
+    expect(car.status()).toEqual('running')
+  })
 })
 
-//     /**
-//      * @test
-//      */
-//     public function itShouldNotDriveFasterThanMaxSpeed()
-//     {
-//         $maxSpeed = 200.0;
-//         $maxMileage = 1000.0;
-//         $car = new Car('BMW', $maxSpeed, $maxMileage);
-//         $car->start();
-//         $car->drive(220.0, 42.0);
-//         $this->assertEquals($maxSpeed, $car->speed());
-//     }
 //     /**
 //      * @test
 //      */

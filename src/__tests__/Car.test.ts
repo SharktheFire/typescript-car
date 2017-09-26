@@ -34,26 +34,15 @@ describe('Car', () => {
     car.drive(30, 50)
     expect(car.status()).toEqual('driving')
   })
+
+  it('should not drive with negative speed', () => {
+    car.start()
+    expect(car.status()).toEqual('running')
+    car.drive(-30, 50)
+    expect(car.speed()).toEqual(0)
+  })
 })
-//     /**
-//      * @test
-//      */
-//     public function itShouldDriveTheCar()
-//     {
-//         $this->car->start();
-//         $this->assertEquals('running', $this->car->status());
-//         $this->car->drive(30.0, 42.0);
-//         $this->assertEquals('driving', $this->car->status());
-//     }
-//     /**
-//      * @test
-//      */
-//     public function itShouldNotDriveWithNegativeSpeed()
-//     {
-//         $this->car->start();
-//         $this->car->drive(-10.0, 42.0);
-//         $this->assertEquals(0.0, $this->car->speed());
-//     }
+
 //     /**
 //      * @test
 //      */

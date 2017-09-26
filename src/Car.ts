@@ -1,6 +1,7 @@
 export default class Car {
 
     private statusName: string
+    private speedNumber: number
 
     constructor(private brand: string, private maxSpeed: number, private maxMileage: number) {
         this.statusName = 'parking'
@@ -19,7 +20,18 @@ export default class Car {
     }
 
     public drive(speed: number, distance: number) {
+
+        if (speed <= 0) {
+            this.speedNumber = 0
+        } else {
+            this.speedNumber = speed
+        }
+
         this.statusName = 'driving'
+    }
+
+    public speed() {
+        return this.speedNumber
     }
 }
 

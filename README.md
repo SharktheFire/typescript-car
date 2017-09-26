@@ -7,7 +7,7 @@ for *Painless ~~JavaScript~~ TypeScript Testing* and [Yarn](https://yarnpkg.com/
 ## Setup
 
 ```
-$ > git clone git@github.com:SharktheFire/typescript-blog-tutorial.git
+$ > git clone git@github.com:SharktheFire/typescript-car.git
 
 $ > yarn install
 ```

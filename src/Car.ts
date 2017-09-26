@@ -19,7 +19,9 @@ export default class Car {
     }
 
     public stop() {
-        this.statusName = 'parking'
+        if (this.status() === 'running') {
+            this.statusName = 'parking'
+        }
     }
 
     public speed() {

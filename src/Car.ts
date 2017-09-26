@@ -13,7 +13,9 @@ export default class Car {
     }
 
     public start() {
-        this.statusName = 'running'
+        if (this.status() === 'parking') {
+            this.statusName = 'running'
+        }
     }
 
     public stop() {
@@ -32,17 +34,26 @@ export default class Car {
 
         if (this.statusName === 'running' || this.statusName === 'driving') {
 
-            this.statusName = 'driving'
-            this.speedNumber += speed
-            this.mileageNumber += distance
+            if (distance > 0) {
+                this.statusName = 'driving'
+                this.speedNumber += speed
+                this.mileageNumber += distance
 
-            if (this.speedNumber > this.maxSpeed) {
-                this.speedNumber = this.maxSpeed
-            }
+                if (this.speedNumber > this.maxSpeed) {
+                    this.speedNumber = this.maxSpeed
+                }
 
-            if (this.speedNumber <= 0) {
-                this.speedNumber = 0
-                this.statusName = 'running'
+                if (this.speedNumber <= 0) {
+                    this.speedNumber = 0
+                    this.mileageNumber = 0
+                    this.statusName = 'running'
+                }
+
+                if (this.mileageNumber > this.maxMileage) {
+                    this.mileageNumber = this.maxMileage
+                    this.speedNumber = 0
+                    this.statusName = 'broken'
+                }
             }
         }
     }

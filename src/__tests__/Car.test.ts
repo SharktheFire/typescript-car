@@ -74,85 +74,42 @@ describe('Car', () => {
     car.drive(50, 150)
     expect(car.mileage()).toEqual(150)
   })
+
+  it('should ignore negative distance', () => {
+    expect(car.mileage()).toEqual(0)
+    car.start()
+    car.drive(50, -150)
+    expect(car.mileage()).toEqual(0)
+  })
+
+  it('should not drive further than planned obsolesence', () => {
+    car.start()
+    car.drive(50, 1001)
+    expect(car.mileage()).toEqual(car.maxMileage)
+  })
+
+  it('should stop driving if planned obsolescence is reached', () => {
+    car.start()
+    car.drive(50, 1001)
+    expect(car.speed()).toEqual(0)
+    expect(car.status()).toEqual('broken')
+  })
+
+  it('should not cover distance not driving', () => {
+    car.start()
+    expect(car.mileage()).toEqual(0)
+    car.drive(0, 10)
+    expect(car.mileage()).toEqual(0)
+  })
+
+  it('should not start if broken status', () => {
+    car.start()
+    car.drive(50, 1001)
+    expect(car.status()).toEqual('broken')
+    car.start()
+    expect(car.status()).toEqual('broken')
+  })
 })
-//     /**
-//      * @test
-//      */
-//     public function itShouldReturnTheMileage()
-//     {
-//         $this->assertEquals(0.0, $this->car->mileage());
-//         $this->car->start();
-//         $this->car->drive(50.0, 120.0);
-//         $this->assertEquals(120.0, $this->car->mileage());
-//     }
-//     /**
-//      * @test
-//      */
-//     public function itShouldIgnoreNegativeDistances()
-//     {
-//         $this->assertEquals(0.0, $this->car->mileage());
-//         $this->car->start();
-//         $this->car->drive(50.0, -120.0);
-//         $this->assertEquals(0.0, $this->car->mileage());
-//     }
-//     /**
-//      * @test
-//      */
-//     public function itShouldNotDriveFurtherThanPlannedObsolesence()
-//     {
-//         $maxMileage = 5000.0;
-//         $car = new Car('BMW', 250.0, $maxMileage);
-//         $this->assertEquals(0.0, $car->mileage());
-//         $car->start();
-//         $car->drive(180.0, 5000.1);
-//         $this->assertEquals($maxMileage, $car->mileage());
-//     }
-//     /**
-//      * @test
-//      */
-//     public function itShouldStopDrivingIfPlannedObsolescenceIsReached()
-//     {
-//         $maxMileage = 5000.0;
-//         $car = new Car('BMW', 250.0, $maxMileage);
-//         $car->start();
-//         $car->drive(180.0, 5100.0);
-//         $this->assertEquals(0.0, $car->speed());
-//         $this->assertEquals('broken', $car->status());
-//     }
-//     /**
-//      * @test
-//      */
-//     public function itShouldNotCoverDistanceNotDriving()
-//     {
-//         $this->car->start();
-//         $this->assertEquals(0.0, $this->car->mileage());
-//         $this->car->drive(0.0, 10.0);
-//         $this->assertEquals(0.0, $this->car->mileage());
-//     }
-//     /**
-//      * @test
-//      */
-//     public function itShouldNotStartIfBroken()
-//     {
-//         $maxMileage = 5000.0;
-//         $car = new Car('BMW', 250.0, $maxMileage);
-//         $car->start();
-//         $car->drive(90.0, 5000.1);
-//         $this->assertEquals('broken', $car->status());
-//         $car->start();
-//         $this->assertEquals('broken', $car->status());
-//     }
-//     /**
-//      * @test
-//      */
-//     public function itShouldNotStartWhileDriving()
-//     {
-//         $this->car->start();
-//         $this->car->drive(50.0, 100.0);
-//         $this->assertEquals('driving', $this->car->status());
-//         $this->car->start();
-//         $this->assertEquals('driving', $this->car->status());
-//     }
 //     /**
 //      * @test
 //      */

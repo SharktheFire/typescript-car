@@ -3,6 +3,7 @@ export default class Car {
     private statusName: string
     private speedNumber: number = 0
     private mileageNumber: number = 0
+    private uniqueId: string = Math.random()
 
     constructor(private brandName: string, private maxSpeed: number, private maxMileage: number) {
         this.statusName = 'parking'
@@ -61,6 +62,16 @@ export default class Car {
                     this.statusName = 'broken'
                 }
             }
+        }
+    }
+
+    public id() {
+        return this.uniqueId
+    }
+
+    public resetMileage(carId: string) {
+        if (carId === this.id()) {
+            this.mileageNumber = 0
         }
     }
 }

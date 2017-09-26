@@ -25,6 +25,6 @@ export default class Service {
     }
 
     public resetMileage(car: Car) {
-
+        car.resetMileage(car.id())
     }
 }

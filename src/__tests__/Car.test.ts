@@ -2,55 +2,39 @@ import Car from '../Car'
 
 describe('Car', () => {
 
-  beforeEach(() => {
+  let car: Car
 
+  beforeEach(() => {
     const brand: string = 'VW'
     const maxSpeed: number = 250
     const maxMileage: number = 1000
 
-    const car: Car = new Car(brand, maxSpeed, maxMileage)
+    car = new Car(brand, maxSpeed, maxMileage)
   })
 
   it('should have status parking after creation', () => {
-    const car: Car = new Car('Audi', 100, 200)
+     expect(car.status()).toEqual('parking')
+  })
+
+  it('should start the car', () => {
+    car.start()
+    expect(car.status()).toEqual('running')
+  })
+
+  it('should stop the car', () => {
+    car.start()
+    expect(car.status()).toEqual('running')
+    car.stop()
     expect(car.status()).toEqual('parking')
   })
+
+  it('should drive the car', () => {
+    car.start()
+    expect(car.status()).toEqual('running')
+    car.drive(30, 50)
+    expect(car.status()).toEqual('driving')
+  })
 })
-//     /** @var Car */
-//     private $car;
-//     public function setUp()
-//     {
-//         $maxSpeed = 250.0;
-//         $maxMileage = 1000.0;
-//         $this->car = new Car('BMW', $maxSpeed, $maxMileage);
-//     }
-//     /**
-//      * @test
-//      */
-//     public function itShouldHaveStatusParkingAfterCreation()
-//     {
-//         $car = new Car('BMW', 50.0, 100.0);
-//         $this->assertEquals('parking', $car->status());
-//     }
-//     /**
-//      * @test
-//      */
-//     public function itShouldStartTheCar()
-//     {
-//         $this->assertEquals('parking', $this->car->status());
-//         $this->car->start();
-//         $this->assertEquals('running', $this->car->status());
-//     }
-//     /**
-//      * @test
-//      */
-//     public function itShouldStopTheCar()
-//     {
-//         $this->car->start();
-//         $this->assertEquals('running', $this->car->status());
-//         $this->car->stop();
-//         $this->assertEquals('parking', $this->car->status());
-//     }
 //     /**
 //      * @test
 //      */

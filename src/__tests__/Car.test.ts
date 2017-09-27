@@ -1,4 +1,5 @@
 import Car from '../Car'
+import FakeService from '../FakeService'
 
 describe('Car', () => {
 
@@ -136,5 +137,28 @@ describe('Car', () => {
 
   it('should have brand', () => {
     expect(car.brand()).toEqual('VW')
+  })
+
+  it('should give secret key to service', () => {
+    const fakeService: FakeService = new FakeService()
+    const carWithService = new Car('BMW', 200, 10000, fakeService)
+    const secretNumber = Math.random().toString(36).substr(2, 9)
+
+    fakeService.secretKey(carWithService, secretNumber)
+
+    expect(fakeService.secretKeyNumber.length).toEqual(secretNumber.length)
+  })
+
+  it('should reset mileage only with secret key', () => {
+    const fakeService: FakeService =  new FakeService()
+    const carWithService: Car = new Car('BMW', 200, 10000, fakeService)
+
+    carWithService.start()
+    carWithService.drive(50, 100)
+    carWithService.resetMileage('1')
+    expect(carWithService.mileage()).toEqual(100)
+
+    carWithService.resetMileage(fakeService.secretKeyNumber)
+    expect(carWithService.mileage()).toEqual(0)
   })
 })

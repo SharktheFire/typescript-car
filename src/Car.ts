@@ -1,12 +1,22 @@
+import AuthorizedDealer from './Car/AuthorizedDealer'
+
 export default class Car {
 
     private statusName: string
     private speedNumber: number = 0
     private mileageNumber: number = 0
-    private uniqueId: string = Math.random()
+    private uniqueId: string = Math.random().toString(36).substr(2, 9)
+    private secretKey: string
 
-    constructor(private brandName: string, private maxSpeed: number, private maxMileage: number) {
+
+    constructor(private brandName: string, private maxSpeed: number, private maxMileage: number, private dealer?: AuthorizedDealer) {
         this.statusName = 'parking'
+
+        if (this.dealer !== undefined) {
+            const id = Math.random().toString(36).substr(2, 9)
+            this.secretKey = id
+            dealer.secretKey(this, this.secretKey)
+        }
     }
 
     public status(): string {
@@ -69,8 +79,8 @@ export default class Car {
         return this.uniqueId
     }
 
-    public resetMileage(carId: string) {
-        if (carId === this.id()) {
+    public resetMileage(onlyWithSecretKey: string) {
+        if (onlyWithSecretKey === this.secretKey) {
             this.mileageNumber = 0
         }
     }

@@ -1,6 +1,8 @@
 import Car from '../Car'
 
-export default class Service {
+export default class Service implements AuthorizedDealer {
+
+    private keychain: Array = []
 
     public newCar(brand: string): Car
     {
@@ -18,13 +20,17 @@ export default class Service {
             default:
                 maxSpeed = 300
                 maxMileage = 3000.0
-                break;
+                break
         }
 
-        return new Car(brand, maxSpeed, maxMileage)
+        return new Car(brand, maxSpeed, maxMileage, this)
+    }
+
+    public secretKey(car: Car, secretKey: string) {
+        this.keychain[car.id()] = secretKey
     }
 
     public resetMileage(car: Car) {
-        car.resetMileage(car.id())
+        car.resetMileage(this.keychain[car.id()])
     }
 }
